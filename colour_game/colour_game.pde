@@ -24,6 +24,7 @@ int mode;
 final int HOME = 0;
 final int GAME = 1;
 final int GAMEOVER = 2;
+int timer;
 
 //-----------float-----------
 float x, y;

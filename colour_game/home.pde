@@ -4,4 +4,5 @@ void home() {
 
 void homeClicks() {
   mode = GAME;
+  timer = 0;
 }

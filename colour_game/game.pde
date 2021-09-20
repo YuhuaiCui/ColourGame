@@ -1,9 +1,14 @@
 int w;
 int c;
-int timer = 0;
+int score = 0;
 
 void game() {
   background(255, 0, 0);
+  
+  //score
+  fill(grey);
+  textSize(40);
+  text(score, width/2, 50);
   
   //timer
   if (timer <= 69) {
@@ -28,5 +33,6 @@ void game() {
 void gameClicks() {
   if (timer <= 69) {
   timer = 0;
+  score = score++;
   }
 }
