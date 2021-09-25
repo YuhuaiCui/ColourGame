@@ -24,18 +24,45 @@ int mode;
 final int HOME = 0;
 final int GAME = 1;
 final int GAMEOVER = 2;
-int timer;
+int frames;
+int i;
 
 //-----------float-----------
 float x, y;
+float timer;
 
 //-----------String-----------
 String[] words;
+String leadingZero;
+
+//Images
+PImage[] gif;
+
+//Fonts
+PFont mc;
+PFont mcItalic;
 
 void setup() { //-----------setup start-----------
   size(800, 800);
   background(255);
   mode = HOME;
+
+  //font initialization
+  mc = createFont("MotionControl-Bold.otf", 128);
+  mcItalic = createFont("MotionControl-BoldItalic.otf", 128);
+
+  //swirl initialization
+  imageMode(CENTER);
+  frames = 35;
+  i = 0;
+  leadingZero = "0";
+  gif = new PImage [frames];
+  while (i < frames) {
+    if (i < 10) leadingZero = "0";
+    else leadingZero = "";
+    gif[i] = loadImage("frame_" + leadingZero + i + "_delay-0.05s.gif");
+    i++;
+  }
 
   //colours initialization
   words = new String [6];
