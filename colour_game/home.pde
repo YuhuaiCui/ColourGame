@@ -16,6 +16,7 @@ void home() {
   //colour game Text
   textFont(mc);
   textSize(100);
+  fill(255);
   text("THE COLOUR GAME", width/2, 700);
 }
 

@@ -1,7 +1,10 @@
 int w;
 int c;
 int score = 0;
+int highScore = 0;
 boolean reset;
+boolean chance;
+boolean rng;
 float time;
 float bar;
 
@@ -17,6 +20,9 @@ void game() {
   fill(grey);
   textSize(100);
   text(score, width/2, 200);
+  if (score >= highScore) {
+   highScore = score; 
+  }
 
   //timer
   if (timer <= 69) {
@@ -34,34 +40,51 @@ void game() {
     fill(red);
   }
   rect(0, height - 50, time, 50);
-  println(time);
 
 
   //randomize colours
   if (timer == 0 || reset == true) {
-    w = int (random(0, 6));
-    c = int (random(0, 6));
-    reset = false;
+    chance = boolean (int (random(0, 2)));
+    if (chance == true) {
+      w = int (random(0, 6));
+      c = w;
+    } else if (chance == false) {
+      rng = boolean (int (random(0, 2)));
+      w = int(random(0, 6));
+      if (w > 0 && w < 6) {
+        if (rng == true) {
+          c = int (random(0, w));
+        }
+       else if (rng == false) {
+        c = int (random(w, 6));
+      }
+    } else if (w == 0) {
+      c = int (random(w, 6));
+    } else if (w == 6) {
+      c = int (random(0, w)); 
+    }
   }
+  reset = false;
+}
 
-  //show colours;
-  textAlign(CENTER, CENTER);
-  textSize(200);
-  textFont(mcItalic);
-  fill(colors[c]);
-  text(words[w], x, y);
+//show colours;
+textAlign(CENTER, CENTER);
+textSize(200);
+textFont(mcItalic);
+fill(colors[c]);
+text(words[w], x, y);
 
-  //true
-  textSize(50);
-  textFont(mc);
-  fill(black);
-  text("TRUE", 200, 50);
+//true
+textSize(50);
+textFont(mc);
+fill(black);
+text("TRUE", 200, 50);
 
-  //false
-  textSize(50);
-  textFont(mc);
-  fill(255);
-  text("FALSE", 600, 50);
+//false
+textSize(50);
+textFont(mc);
+fill(255);
+text("FALSE", 600, 50);
 }
 
 void gameClicks() {
@@ -74,6 +97,6 @@ void gameClicks() {
     score++;
     reset = true;
   } else {
-   mode = GAMEOVER; 
+    mode = GAMEOVER;
   }
 }
